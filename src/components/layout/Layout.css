@@ -1,0 +1,22 @@
+header{
+    background-color: #1D2026;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+header a{
+    font-size: 14px;
+    color: #8C94A3;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+.active{
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.dropdowns{
+    width: 150px;
+}

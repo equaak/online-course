@@ -1,38 +1,50 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap');
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./fonts/SF-Pro.ttf');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'SF Pro', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.wide-wrapper{
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.standart-wrapper{
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.mid-wrapper{
+  max-width: 1270px;
+  margin: 0 auto;
+}
+
+.tiny-wrapper{
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+button{
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color: #000000;
+}
+
+.between-center{
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
