@@ -20,3 +20,76 @@ header a{
 .dropdowns{
     width: 150px;
 }
+
+.main-header{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #E9EAF0;
+}
+
+.main-headerTitle{
+    font-size: 32px;
+    color: #1D2026;
+    font-weight: 600;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+.main-headerLeft img{
+    width: 40px;
+}
+
+.search{
+    padding: 10px 25px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: #ccc 1px solid;
+    margin-left: 10px;
+}
+
+.search input{
+    outline: none;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    color: #8C94A3;
+}
+
+.search img{
+    height: 20px;
+}
+
+
+.main-headerRight{
+    width: 420px;
+}
+
+.main-clickables{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100px;
+}
+
+.main-clickables img{
+    width: 20px;
+}
+
+.main-button{
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    outline: none;    
+}
+
+.main-button.white{
+    background-color: #FFEEE8;
+    color: #FF6636;
+}
+
+.main-button.orange{
+    background-color: #FF6636;
+    color: #FFFFFF;
+}

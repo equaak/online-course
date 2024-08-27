@@ -4,6 +4,11 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import Dropdown from '../dropdown/Dropdown';
 import Maindropdown from '../main-dropdown/Main-Dropdown';
 
+import bell from './Bell.svg';
+import heart from './Heart.svg';
+import shopping from './ShoppingCartSimple.svg';
+import logo from './logo.svg';
+import search from './search.svg';
 
 const Layout = observer(() => {
 
@@ -30,18 +35,35 @@ const Layout = observer(() => {
                 </div>
             </header>
             <div className='main-header wide-wrapper between-center'>
-                <div className='main-headerLeft'>
-                    <img src='' />
+                <div className='main-headerLeft between-center'>
+                    <img src={logo} />
                     <p className='main-headerTitle'>E-tutor</p>
                     <Maindropdown label={'Browse'} options={['Technology & IT', 'Business & Finance', 'Creative Arts & Design', 'Personal Development', 'Health & Wellness', 'Language Learning', 'Science & Engineering', 'Lifestyle & Hobbies']} />
                     <div className='search'>
-                        <img src='' />
-                        <input />
+                        <img src={search} />
+                        <input placeholder='What do you want to learn...'/>
                     </div>
                 </div>
+
+                <div className='main-headerRight between-center'>
+                    <div className='main-clickables'>
+                        <Link to=''><img src={bell} /></Link>
+                        <Link to=''><img src={heart} /></Link>
+                        <Link to=''><img src={shopping} /></Link>                      
+                        
+                    </div>
+                    <button className='main-button white'>Create Account</button>
+                    <button className='main-button orange'>Sign in</button>
+                </div>
             </div>
+
+            <Outlet />
+
+            <footer>
+
+            </footer>
         </main>
     )
-})
+});
 
 export default Layout;

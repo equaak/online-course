@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Main-Dropdown.css';
+import arrow from '../dropdown/arrow.svg';
 
 const Maindropdown = ({ options, label, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +17,8 @@ const Maindropdown = ({ options, label, onSelect }) => {
     <div className="maindropdown">
       <div className="maindropdown-label" onClick={toggledropdown}>
         {selectedOption || label}
+
+        <img src={arrow} />
       </div>
       {isOpen && (
         <div className="maindropdown-menu">
