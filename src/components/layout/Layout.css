@@ -61,19 +61,16 @@ header a{
 }
 
 
-.main-headerRight{
-    width: 420px;
-}
-
 .main-clickables{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100px;
+    margin-right: 25px;
 }
 
 .main-clickables img{
-    width: 20px;
+    height: 17px;
 }
 
 .main-button{
@@ -82,6 +79,16 @@ header a{
     font-weight: 600;
     border: none;
     outline: none;    
+}
+
+.main-headerRight .main-button.orange{
+    margin-left: 15px;
+}
+
+.pfp-icon{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
 }
 
 .main-button.white{

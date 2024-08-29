@@ -1,0 +1,68 @@
+.settings-title{
+    font-size: 24px;
+    font-weight: 600;
+    color: #1D2026;
+    margin: 40px 0 25px 0;
+}
+
+.pfp{
+    width: 280px;
+    height: 280px;
+    background-color: #a4a4a4;
+    display: flex;
+    align-items: flex-end;
+}
+
+.upload{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 10px 0;
+   
+    background-color: #0000009e;
+    cursor: pointer;
+}
+
+.pfp-settings{
+    padding: 45px;
+    border: 1px solid #E9EAF0;
+}
+
+.upload-title{
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.pfp input{
+    display: none;
+}
+
+.pfp-desc{
+    font-size: 14px;
+    color: #6E7485;
+    margin-top: 20px;
+    width: 280px;
+    text-align: center;
+}
+
+.info-settings{
+    width: 700px;
+}
+
+.info-settings .between-center{
+    gap: 20px;
+}
+
+.settings-devisor{
+    width: 100%;
+    height: 1px;
+    background-color: #E9EAF0;
+    margin: 40px 0;
+}
+
+.change-password{
+    width: 600px;
+}

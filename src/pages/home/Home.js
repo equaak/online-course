@@ -1,10 +1,19 @@
 import { Link } from 'react-router-dom';
 import './Home.css';
 import background from './background.png';
+import { useEffect, useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
+import Notification from '../../components/notification/Notification';
+import { observer } from 'mobx-react-lite';
+import userStore from '../../store/UserStore';
 
-const Home = () => {
+const Home = observer(() => {
+
+    
+
     return(
         <main>
+            
             <div className='hero-block standart-wrapper between-center'>
                 <div className='hero-content'>
                     <p className='hero-title'>Learn with expert anytime anywhere</p>
@@ -113,10 +122,11 @@ const Home = () => {
 
             <div className='courses-block standart-wrapper'>
                 <p className='browse-title'>Best selling courses</p>
+
                 
             </div>
         </main>
     )
-}
+});
 
 export default Home;
