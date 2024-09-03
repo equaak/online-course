@@ -1,19 +1,14 @@
 header{
-    background-color: #1D2026;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
 header a{
-    font-size: 14px;
-    color: #8C94A3;
     margin-right: 20px;
     font-weight: 500;
 }
 
 .active{
-    color: #ffffff;
-    font-weight: 600;
     text-decoration: underline;
 }
 
@@ -28,9 +23,6 @@ header a{
 }
 
 .main-headerTitle{
-    font-size: 32px;
-    color: #1D2026;
-    font-weight: 600;
     margin-left: 10px;
     margin-right: 40px;
 }
@@ -53,7 +45,6 @@ header a{
     cursor: pointer;
     border: none;
     font-size: 16px;
-    color: #8C94A3;
 }
 
 .search img{
@@ -91,12 +82,6 @@ header a{
     border-radius: 50%;
 }
 
-.main-button.white{
-    background-color: #FFEEE8;
-    color: #FF6636;
-}
-
-.main-button.orange{
-    background-color: #FF6636;
-    color: #FFFFFF;
+.layout-buttons{
+    gap: 20px;
 }

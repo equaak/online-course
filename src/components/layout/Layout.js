@@ -24,15 +24,21 @@ const Layout = observer(() => {
     const [show, setShow] = useState(null);
     const [login, setLogin] = useState(false);
 
+    const [categories, setCategories] = useState([]);
+    const getCategories = async () => {
+        const responce = await axios.get('http://localhost:5000/category/getCategories');
+        const newArray = responce.data.map(obj => Object.values(obj)[1]);
+        setCategories(newArray);
+    }
+
     useEffect(() => {
+        getCategories();
         if (localStorage.getItem('token')) {
             const decodedToken = jwtDecode(localStorage.getItem('token'));
             const currentTime = Date.now() / 1000;
 
             if (decodedToken.exp < currentTime && userStore.onceClose === false) {
                 handleShow();
-            } else {
-                handleLogin();
             }
         }
     }, []);
@@ -40,15 +46,6 @@ const Layout = observer(() => {
     const handleShow = () => {
         setShow(true);
         localStorage.removeItem('token');
-    }
-
-    const handleLogin = async () => {
-        setShow(false);
-        setLogin(true);
-        userStore.setOnClosed();
-        const userData = jwtDecode(localStorage.getItem('token')).data;
-        const responce = await axios.get('http://localhost:5000/user/get-profile?email=' + userData.email) 
-        userStore.setUser(responce.data);
     }
 
     const handleClose = () => {
@@ -66,14 +63,14 @@ const Layout = observer(() => {
     return (
         <main>
             <Notification message={'Login time expired. Login!'} show={show} onClose={handleClose}/>
-            <header>
+            <header className='background-color-gray-900'>
                 <div className='wide-wrapper between-center'>
                     <div className='headers between-center'>
-                        <Link to='/' className={location.pathname === '/' ? 'active' : ''}>Home</Link>
-                        <Link to='/courses' className={location.pathname === '/courses' ? 'active' : ''}>Courses</Link>
-                        <Link to='/about' className={location.pathname === '/about' ? 'active' : ''}>About</Link>
-                        <Link to='/contact' className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link>
-                        <Link to='/becomeInstuctor' className={location.pathname === '/becomeInstuctor' ? 'active' : ''}>Become an Instructor</Link>
+                        <Link to='/' className={location.pathname === '/' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>Home</Link>
+                        <Link to='/courses' className={location.pathname === '/courses' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>Courses</Link>
+                        <Link to='/about' className={location.pathname === '/about' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>About</Link>
+                        <Link to='/contact' className={location.pathname === '/contact' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>Contact</Link>
+                        <Link to='/becomeInstuctor' className={location.pathname === '/becomeInstuctor' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>Become an Instructor</Link>
                     </div>
 
                     <div className='dropdowns between-center'>
@@ -87,12 +84,12 @@ const Layout = observer(() => {
                     <div className='main-headerLeft between-center'>
                         <Link to='/' className='between-center'>
                             <img src={logo} alt="Logo" />
-                            <p className='main-headerTitle'>E-tutor</p>
+                            <p className='main-headerTitle heading-03 color-gray-900'>E-tutor</p>
                         </Link>
-                        <Maindropdown label={'Browse'} options={['Technology & IT', 'Business & Finance', 'Creative Arts & Design', 'Personal Development', 'Health & Wellness', 'Language Learning', 'Science & Engineering', 'Lifestyle & Hobbies']} />
+                        <Maindropdown label={'Browse'} options={categories} />
                         <div className='search'>
                             <img src={search} alt="Search" />
-                            <input placeholder='What do you want to learn...'/>
+                            <input className='body-l400 color-gray-500' placeholder='What do you want to learn...'/>
                         </div>
                     </div>
 
@@ -102,18 +99,18 @@ const Layout = observer(() => {
                             <Link to=''><img src={heart} alt="Favorites" /></Link>
                             <Link to=''><img src={shopping} alt="Cart" /></Link>
                         </div>
-                        {userStore?.user?.pfp === undefined ?
-                            <>
+                        {userStore.user === null ?
+                            <div className='layout-buttons between-center'>
                                 <Link to='/auth/sign-up'>
-                                    <button className='main-button white'>Create Account</button>
+                                    <button className='button-secondary medium primary button-m'>Create Account</button>
                                 </Link>
                                 <Link to='/auth/sign-in'>
-                                    <button className='main-button orange'>Sign in</button>
+                                    <button className='button-primary medium primary button-m'>Sign in</button>
                                 </Link>
-                            </>
+                            </div>
                             : 
-                            <Link to='/profile/settings'>
-                                <img className='pfp-icon' src={userStore.user?.pfp ? userStore.user.pfp : icon} alt="Profile" />
+                            <Link to='/profile/dashboard'>
+                                <img className='pfp-icon' src={userStore?.pfp ? userStore.pfp : icon} alt="Profile" />
                             </Link>
                         }
                     </div>

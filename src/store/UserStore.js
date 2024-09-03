@@ -1,9 +1,11 @@
 import { makeAutoObservable } from "mobx";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 class UserStore {
-  user = undefined;
+  user = null;
   onceClose = false;
+  pfp = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -13,33 +15,54 @@ class UserStore {
     this.onceClose = true;
   }
 
-  setUser(user) {
+  async setUser(user) {
+    console.log('setUser');
     this.user = user;
-    console.log(user);
-    this.setProfilePicture(user.pfp);
-    Cookies.set("user", JSON.stringify(user), { expires: 1 });
+    if (user?.userId) {
+      const responce = await axios.get(
+        "http://localhost:5000/user/get-pfp?id=" + user.userId
+      );
+      this.setProfilePicture(responce.data);
+    }  
+
+    Cookies.set('user', JSON.stringify(this.user), { expires: 1 });
   }
 
-  loadUserFromCookies() {
+  async setUserObject(user) {
+    this.user = user;
+    if (user?.userId) {
+      const responce = await axios.get(
+        "http://localhost:5000/user/get-pfp?id=" + user.userId
+      );
+      this.setProfilePicture(responce.data);
+    }
+    this.clearUser();
+  }
+
+  async loadUserFromCookies() {
     const userCookie = Cookies.get("user");
     if (userCookie) {
       this.user = JSON.parse(userCookie);
-      console.log(this.user);
+      const responce = await axios.get(
+        "http://localhost:5000/user/get-pfp?id=" + this.user.userId
+      );
+      this.setProfilePicture(responce.data);
     }
   }
 
   clearUser() {
-    this.user = undefined;
+    this.user = null;
+    this.pfp = null;
     Cookies.remove("user");
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
   }
 
   setProfilePicture(str) {
-    if (this.user && this.user.pfp) {
+    if (this.user && str) {
       if (!str.includes("data:image/png;base64,"))
-        this.user.pfp = `data:image/png;base64,${str}`;
+        this.pfp = `data:image/png;base64,${str}`;
       else {
-        this.user.pfp = str;
+        this.pfp = str;
       }
     }
   }

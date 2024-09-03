@@ -1,9 +1,9 @@
 import { Navigate, useLocation } from "react-router";
-import userStore from "../../store/UserStore";
+import Cookies from "js-cookie";
 import { observer } from "mobx-react-lite";
 
 const PrivateRoute = observer(({ element: Component, ...rest }) => {
-  const isAuthenticated = userStore.user !== undefined;
+  const isAuthenticated = Cookies.get('user') !== null;
   const location = useLocation();
 
   return isAuthenticated ? (

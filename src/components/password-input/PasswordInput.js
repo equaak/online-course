@@ -21,7 +21,7 @@ const PasswordInput = ({handleChange, placeholder}) => {
 
     return(
         <div className='password-container between-center part-input'>
-            <input type={show ? 'text' : 'password'} placeholder={placeholder} className='password-input' value={passwordValue} onChange={onTextChange}/>
+            <input type={show ? 'text' : 'password'} placeholder={placeholder} className='password-input body-l400' value={passwordValue} onChange={onTextChange}/>
             <img src={show ? eye : eyeslash} onClick={handleClick}/>
         </div>
     )

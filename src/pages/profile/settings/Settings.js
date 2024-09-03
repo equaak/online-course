@@ -25,7 +25,7 @@ const Settings = observer(() => {
   const navigate = useNavigate();
 
 //   useEffect(() => {
-//     if (userStore.user == undefined) {
+//     if (userStore.user == null) {
 //       navigate("/auth/sign-in");
 //     }
 //   }, []);
@@ -86,7 +86,7 @@ const Settings = observer(() => {
       "http://localhost:5000/user/update-info",
       new_info
     );
-    userStore.setUser(response.data);
+    // userStore.setUser(response.data);
   };
 
   const handlePasswordChange = async () => {
@@ -116,7 +116,7 @@ const Settings = observer(() => {
         onClose={handleClose}
       />
       <div className="tiny-wrapper">
-        <p className="settings-title">Account settings</p>
+        <p className="settings-title color-gray-900 heading-04">Account settings</p>
         <div className="between-center">
           <div className="pfp-settings">
             <div
@@ -138,10 +138,10 @@ const Settings = observer(() => {
               />
               <div onClick={handleClick} className="upload">
                 <img src={upload} />
-                <p className="upload-title">Upload Photo</p>
+                <p className="upload-title color-gray-white body-m500">Upload Photo</p>
               </div>
             </div>
-            <p className="pfp-desc">
+            <p className="pfp-desc color-gray-600 body-m400">
               Image size should be under 1MB and image ratio needs to be 1:1
             </p>
           </div>
@@ -198,41 +198,43 @@ const Settings = observer(() => {
                 placeholder="Your title, profession or small biography"
               />
             </div>
-            <button onClick={handleInfoChange} className="main-button orange">
+            <button onClick={handleInfoChange} className="button-primary primary medium button-m">
               Save Changes
             </button>
           </div>
         </div>
       </div>
-      <div className="settings-devisor"></div>
+      <div className="settings-devisor background-color-gray-100"></div>
       <div className="tiny-wrapper">
-        <p className="settings-title">Change password</p>
+        <p className="settings-title heading-04">Change password</p>
         <div className="change-password">
           <div className="auth-part">
-            <p className="part-title">Current Password</p>
+            <p className="part-title body-m400">Current Password</p>
             <PasswordInput
               handleChange={setCurrentPassword}
               placeholder="Current Password"
             />
           </div>
           <div className="auth-part">
-            <p className="part-title">New Password</p>
+            <p className="part-title body-m400">New Password</p>
             <PasswordInput
               handleChange={setNewPassword}
               placeholder="Create Password"
             />
           </div>
           <div className="auth-part">
-            <p className="part-title">Confirm Password</p>
+            <p className="part-title body-m400">Confirm Password</p>
             <PasswordInput
               handleChange={setPasswordConfirmation}
               placeholder="Confirm Password"
             />
           </div>
-          <button className="main-button orange" onClick={handlePasswordChange}>
-            Change password
-          </button>
-          <button className="main-button orange" onClick={() => userStore.clearUser()}>Log out</button>
+          <div className="between-center">
+            <button className="button-primary primary medium button-m" onClick={handlePasswordChange}>
+              Change password
+            </button>
+            <button className="button-secondary primary medium button-m" onClick={() => userStore.clearUser()}>Log out</button>
+          </div>
         </div>
       </div>
     </main>

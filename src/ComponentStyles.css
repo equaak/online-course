@@ -1,0 +1,132 @@
+.button-primary.primary{
+    background-color: #FF6636;
+    color: #ffffff;
+    border: none;
+}
+
+.button-primary.small{
+    padding: 10px 20px;
+}
+
+.button-primary.medium{
+    padding: 15px 30px;
+}
+
+.button-primary.large{
+    padding: 15px 40px;
+}
+
+.button-secondary.small{
+    padding: 10px 20px;
+}
+
+.button-secondary.medium{
+    padding: 15px 30px;
+}
+
+.button-secondary.large{
+    padding: 15px 40px;
+}
+
+.button-tertiary.small{
+    padding: 10px 20px;
+}
+
+.button-tertiary.medium{
+    padding: 15px 30px;
+}
+
+.button-tertiary.large{
+    padding: 15px 40px;
+}
+
+.button-primary.primary:hover{
+    box-shadow: 0px 0px 20px 0px rgba(204, 82, 43, 0.5);
+}
+
+.button-primary.secondary{
+    background-color: #564FFD;
+    color: #ffffff;
+    border: none;
+}
+
+.button-primary.secondary:hover{
+    box-shadow: 0px 0px 20px 0px rgba(69, 63, 202, 0.5);
+}
+
+.button-primary.grey{
+    background-color: #1D2026;
+    color: #ffffff;
+    border: none;
+}
+
+.button-primary.grey:hover{
+    background-color: #363B47;
+    box-shadow: 0px 0px 20px 0px rgba(54, 59, 71, 0.5);
+}
+
+.button-secondary.primary{
+    background-color: #FFEEE8;
+    color: #FF6636;
+    border: none;
+}
+
+.button-secondary.primary:hover{
+    background-color: #FFDDD1;
+}
+
+.button-secondary.secondary{
+    background-color: #EBEBFF;
+    color: #564FFD;
+    border: none;
+}
+
+.button-secondary.secondary:hover{
+    background-color: #CDCBFE;
+    color: #453FCA;
+}
+
+.button-secondary.grey{
+    background-color: #F5F7FA;
+    color: #1D2026;
+    border: none;
+}
+
+.button-secondary.grey:hover{
+    background-color: #E9EAF0;
+    color: #363B47;
+}
+
+.button-tertiary.primary{
+    background: none;
+    color: #FF6636;
+    border: none;
+}
+
+.button-tertiary.primary:hover{
+    background-color: #FFEEE8;
+}
+
+.button-tertiary.secondary{
+    background: none;
+    color: #564FFD;
+    border: none;
+}
+
+.button-tertiary.secondary:hover{
+    background-color: #CDCBFE;
+    color: #453FCA;
+}
+
+.button-tertiary.grey{
+    background: none;
+    color: #1D2026;
+    border: none;
+}
+
+.button-tertiary.grey:hover{
+    background-color: #F5F7FA;
+    color: #1D2026;
+}
+
+

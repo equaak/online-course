@@ -15,7 +15,7 @@ const Maindropdown = ({ options, label, onSelect }) => {
 
   return (
     <div className="maindropdown">
-      <div className="maindropdown-label" onClick={toggledropdown}>
+      <div className="maindropdown-label body-l400" onClick={toggledropdown}>
         {selectedOption || label}
 
         <img src={arrow} />

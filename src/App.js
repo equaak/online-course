@@ -8,12 +8,19 @@ import ProfileLayout from './components/profile/layout/ProfileLayout';
 import { useEffect } from 'react';
 import userStore from './store/UserStore';
 import PrivateRoute from './components/protectedRoute/ProtectedRoute';
+import './FontStyles.css';
+import './ComponentStyles.css';
+import './Color.css';
+import Dashboard from './pages/profile/dashboard/Dashboard';
+import Cookies from 'js-cookie';
 
 function App() {
 
   useEffect(() => {
-    userStore.loadUserFromCookies();
-    console.log(userStore.user)
+    if(Cookies.get('user') !== undefined){
+      console.log('app.js');
+      userStore.loadUserFromCookies();
+    }
   }, [])
 
   return (
@@ -22,7 +29,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path='profile' element={<PrivateRoute element={<ProfileLayout />} />}>
           <Route path='settings' element={<Settings />} />
-          <Route path='dashboard' element={<></>} />
+          <Route path='dashboard' element={<Dashboard />} />
           <Route path='courses' element={<></>} />
           <Route path='teachers' element={<></>} />
           <Route path='message' element={<></>} />

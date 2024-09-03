@@ -15,7 +15,7 @@
   background-color: #fff;
   padding: 15px 25px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 400px;
+  min-width: 400px;
   margin-top: 100px;
   z-index: 1;
 }
@@ -30,6 +30,7 @@
   background: none;
   border: none;
   color: #4e5566;
+  margin-left: 40px;
 }
 
 .notification button:hover {

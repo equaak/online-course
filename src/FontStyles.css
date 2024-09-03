@@ -1,0 +1,167 @@
+.display-01{
+    font-size: 80px;
+    font-weight: 600;
+}
+
+.display-02{
+    font-size: 72px;
+    font-weight: 600;
+}
+
+.display-03{
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.heading-01{
+    font-size: 48px;
+    font-weight: 600;
+}
+
+.heading-02{
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.heading-03{
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.heading-04{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.button-l{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.button-m{
+    font-size: 16px;
+    font-weight: 600;   
+}
+
+.button-s{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.label-xxl{
+    font-weight: 500;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.label-xl{
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.label-l{
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.label-m{
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.label-s{
+    font-weight: 500;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.body-xxxl{
+    font-size: 24px;
+}
+
+.body-xxl400{
+    font-size: 20px;
+}
+
+.body-xxl500{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.body-xxl600{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.body-xl400{
+    font-size: 18px;
+}
+
+.body-xl500{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.body-xl500{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.body-l400{
+    font-size: 16px;
+}
+
+.body-l500{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.body-l600{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.body-m400{
+    font-size: 14px;
+}
+
+.body-m500{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.body-m600{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.body-s400{
+    font-size: 12px;
+}
+
+.body-s500{
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.body-s600{
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.body-t400{
+    font-size: 10px;
+}
+
+.body-t500{
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.body-t600{
+    font-size: 10px;
+    font-weight: 600;
+}
