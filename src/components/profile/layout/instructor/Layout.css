@@ -3,6 +3,11 @@
     width: 15vw;
 }
 
+.instructor-wrapper{
+    display: flex;
+    align-items: flex-start;
+}
+
 .inst-menu-wrapper{
     padding: 20px 30px;
 }

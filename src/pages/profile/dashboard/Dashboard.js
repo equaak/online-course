@@ -44,7 +44,7 @@ const Dashboard = observer(() => {
                         </div>
                     </div>
                 </div>
-                <p className='settings-title color-gray-900 heading-04'>Let's start learning, {userStore.user.firstName}</p>
+                <p className='settings-title color-gray-900 heading-04'>Let's start learning, {userStore.user?.firstName}</p>
             </div>
         </main>
     )

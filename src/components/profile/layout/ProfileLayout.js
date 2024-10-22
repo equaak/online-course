@@ -11,8 +11,13 @@ import axios from 'axios';
 
 const ProfileLayout = observer(() => {
     const becomeInstructor = async () => {
-        const response = await axios.post('http://localhost:5000/instructor/addInstructor', {biography: '', userId: userStore.user.userId});
-        console.log(response.data);
+        try{
+            const response = await axios.post('http://localhost:5000/instructor/addInstructor', {biography: '', userId: userStore.user.userId});
+            console.log(response.data);
+        }
+        catch (err){
+            console.log(err.message);
+        }
     }
 
     const location = useLocation();
@@ -22,7 +27,7 @@ const ProfileLayout = observer(() => {
                 <div className='tiny-wrapper'>
                     <div className='profile-header-container background-color-gray-white between-center'>
                         <div className='profile-headerLeft between-center'>
-                        <img className='profile-header-icon' src={userStore?.pfp ? userStore.pfp : icon} /> 
+                        <img className='profile-header-icon' src={userStore?.pfp ? userStore.pfp : icon} />
                             <div className='profile-headerInfo'>
                                 <p className='profile-header-title color-gray-900 heading-04'>{userStore?.user?.firstName} {userStore?.user?.lastName}</p>
                                 {userStore.user?.title == null ? '' : <p className='profile-header-subtitle color-gray-600 body-l400'>{userStore.user.title}</p>}

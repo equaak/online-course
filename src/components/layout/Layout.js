@@ -22,9 +22,9 @@ const Layout = observer(() => {
     const navigate = useNavigate();
 
     const [show, setShow] = useState(null);
-    const [login, setLogin] = useState(false);
 
     const [categories, setCategories] = useState([]);
+
     const getCategories = async () => {
         const responce = await axios.get('http://localhost:5000/category/getCategories');
         const newArray = responce.data.map(obj => Object.values(obj)[1]);
@@ -69,7 +69,7 @@ const Layout = observer(() => {
                         <Link to='/about' className={location.pathname === '/about' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>About</Link>
                         <Link to='/contact' className={location.pathname === '/contact' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>Contact</Link>
                         {userStore.isInstructor == false ? <Link to='/becomeInstuctor' className={location.pathname === '/becomeInstuctor' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>Become an Instructor</Link> : ""}
-                        
+
                     </div>
 
                     <div className='dropdowns between-center'>
@@ -107,8 +107,8 @@ const Layout = observer(() => {
                                     <button className='button-primary medium primary button-m'>Sign in</button>
                                 </Link>
                             </div>
-                            : 
-                            <Link to='/profile/dashboard'>
+                            :
+                            <Link to={userStore.isInstructor ? '/instructor/settings' : '/profile/dashboard'}>
                                 <img className='pfp-icon' src={userStore?.pfp ? userStore.pfp : icon} alt="Profile" />
                             </Link>
                         }

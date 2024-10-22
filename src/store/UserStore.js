@@ -6,7 +6,7 @@ class UserStore {
   user = null;
   onceClose = false;
   pfp = null;
-  isInstructor = true;
+  isInstructor = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -16,7 +16,7 @@ class UserStore {
     this.onceClose = true;
   }
 
-  async setUser(user) {    
+  async setUser(user) {
     this.user = user;
     if (user?.userId) {
       const responce = await axios.get(
@@ -26,7 +26,7 @@ class UserStore {
 
       this.isInstructor = response.data;
       this.setProfilePicture(responce.data);
-    }  
+    }
 
     Cookies.set('user', JSON.stringify(this.user), { expires: 1 });
   }
@@ -54,6 +54,9 @@ class UserStore {
       const responce = await axios.get(
         "http://localhost:5000/user/get-pfp?id=" + this.user.userId
       );
+      const response = await axios.get("http://localhost:5000/user/is-instructor?id=" + this.user.userId);
+
+      this.isInstructor = response.data;
       this.setProfilePicture(responce.data);
     }
   }
