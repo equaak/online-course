@@ -58,8 +58,6 @@ const Layout = observer(() => {
         console.log(option);
     }
 
-    // const profileImageUrl = userStore.user.pfp || icon;
-
     return (
         <main>
             <Notification message={'Login time expired. Login!'} show={show} onClose={handleClose}/>
@@ -70,7 +68,8 @@ const Layout = observer(() => {
                         <Link to='/courses' className={location.pathname === '/courses' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>Courses</Link>
                         <Link to='/about' className={location.pathname === '/about' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>About</Link>
                         <Link to='/contact' className={location.pathname === '/contact' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>Contact</Link>
-                        <Link to='/becomeInstuctor' className={location.pathname === '/becomeInstuctor' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>Become an Instructor</Link>
+                        {userStore.isInstructor == false ? <Link to='/becomeInstuctor' className={location.pathname === '/becomeInstuctor' ? 'active body-m500 color-gray-white' : 'body-m500 color-gray-500'}>Become an Instructor</Link> : ""}
+                        
                     </div>
 
                     <div className='dropdowns between-center'>

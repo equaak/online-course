@@ -68,10 +68,11 @@ const Auth = observer(() => {
             if(rememberMe){
                 localStorage.setItem('token', response.data);
                 const user = jwtDecode(response.data);
-                // userStore.setUser(user.protected_user);
+                userStore.setUser(user.protected_user);
             }
             else{
-                // userStore.setUserObject(response.data);
+                
+                userStore.setUserObject(response.data);
             }
             navigate('/');
         }
@@ -90,7 +91,7 @@ const Auth = observer(() => {
 
         localStorage.setItem('token', response.data);
         const user = jwtDecode(response.data);
-        // userStore.setUser(user.protected_user);
+        userStore.setUser(user.protected_user);
         navigate('/');
     }
 

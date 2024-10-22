@@ -13,6 +13,7 @@ import './ComponentStyles.css';
 import './Color.css';
 import Dashboard from './pages/profile/dashboard/Dashboard';
 import Cookies from 'js-cookie';
+import InstructorLayout from './components/profile/layout/instructor/Layout';
 
 function App() {
 
@@ -38,7 +39,9 @@ function App() {
           <Route path='*' element={<div>oshibka profile</div>}/>
         </Route>
         <Route path='*' element={<div>oshibka prirodi</div>}/>
-
+      </Route>
+      <Route path='/instructor' element={<InstructorLayout />}>
+        
       </Route>
       <Route path='/auth/:option' element={<Auth />}/>
     </Routes>

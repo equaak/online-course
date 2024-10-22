@@ -24,11 +24,11 @@ const Settings = observer(() => {
 
   const navigate = useNavigate();
 
-//   useEffect(() => {
-//     if (userStore.user == null) {
-//       navigate("/auth/sign-in");
-//     }
-//   }, []);
+  useEffect(() => {
+    if (userStore.user == null) {
+      navigate("/auth/sign-in");
+    }
+  }, []);
 
   const handleClick = () => {
     ref.current.click();
@@ -60,7 +60,7 @@ const Settings = observer(() => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onloadend = () => {
-        resolve(reader.result.split(",")[1]); // Remove the data URL prefix
+        resolve(reader.result.split(",")[1]);
       };
       reader.onerror = reject;
       reader.readAsDataURL(file);
@@ -86,7 +86,7 @@ const Settings = observer(() => {
       "http://localhost:5000/user/update-info",
       new_info
     );
-    // userStore.setUser(response.data);
+    userStore.setUser(response.data);
   };
 
   const handlePasswordChange = async () => {
@@ -103,7 +103,11 @@ const Settings = observer(() => {
     }
   };
 
-  // Memoize the profile picture URL
+  const handleLogout = () => {
+    userStore.clearUser();
+    navigate('/');
+  }
+
   const profilePictureUrl = useMemo(() => {
     return file ? URL.createObjectURL(file) : null;
   }, [file]);
@@ -233,7 +237,7 @@ const Settings = observer(() => {
             <button className="button-primary primary medium button-m" onClick={handlePasswordChange}>
               Change password
             </button>
-            <button className="button-secondary primary medium button-m" onClick={() => userStore.clearUser()}>Log out</button>
+            <button className="button-secondary primary medium button-m" onClick={handleLogout}>Log out</button>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ class UserStore {
   user = null;
   onceClose = false;
   pfp = null;
+  isInstructor = true;
 
   constructor() {
     makeAutoObservable(this);
@@ -15,13 +16,15 @@ class UserStore {
     this.onceClose = true;
   }
 
-  async setUser(user) {
-    console.log('setUser');
+  async setUser(user) {    
     this.user = user;
     if (user?.userId) {
       const responce = await axios.get(
         "http://localhost:5000/user/get-pfp?id=" + user.userId
       );
+      const response = await axios.get("http://localhost:5000/user/is-instructor?id=" + user.userId);
+
+      this.isInstructor = response.data;
       this.setProfilePicture(responce.data);
     }  
 
@@ -34,9 +37,14 @@ class UserStore {
       const responce = await axios.get(
         "http://localhost:5000/user/get-pfp?id=" + user.userId
       );
+      const response = await axios.get("http://localhost:5000/user/is-instructor?id=" + user.userId);
+
+      this.isInstructor = response.data;
       this.setProfilePicture(responce.data);
     }
-    this.clearUser();
+
+    Cookies.remove("user");
+    localStorage.removeItem("token");
   }
 
   async loadUserFromCookies() {
@@ -53,6 +61,7 @@ class UserStore {
   clearUser() {
     this.user = null;
     this.pfp = null;
+    this.isInstructor = false;
     Cookies.remove("user");
     localStorage.removeItem("token");
   }

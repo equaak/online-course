@@ -7,7 +7,13 @@ import arrow from '../../../pages/profile/settings/ArrowRight.svg';
 import userStore from '../../../store/UserStore';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
+import axios from 'axios';
+
 const ProfileLayout = observer(() => {
+    const becomeInstructor = async () => {
+        const response = await axios.post('http://localhost:5000/instructor/addInstructor', {biography: '', userId: userStore.user.userId});
+        console.log(response.data);
+    }
 
     const location = useLocation();
     return(
@@ -22,13 +28,11 @@ const ProfileLayout = observer(() => {
                                 {userStore.user?.title == null ? '' : <p className='profile-header-subtitle color-gray-600 body-l400'>{userStore.user.title}</p>}
                             </div>
                         </div>
-                        <button className='profile-header-button button-secondary primary medium button-m'>Become Instructor  <img src={arrow} /></button>
+                        <button className='profile-header-button button-secondary primary medium button-m' onClick={becomeInstructor}>Become Instructor  <img src={arrow} /></button>
                     </div>
                 </div>
             </div>
             <div className='profile-main'>
-                {/* <input type='file' onChange={handleImage} />
-                <img src={file} /> */}
                 <div className='tiny-wrapper'>
                     <div className='profile-main-header background-color-gray-white between-center'>
                         <Link to='/profile/dashboard' className={location.pathname == '/profile/dashboard' ? 'profile-main-header-link body-l500 active color-primary-500' : 'profile-main-header-link body-l500 color-gray-700'}>Dashboard</Link>
