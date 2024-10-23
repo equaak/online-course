@@ -25,7 +25,7 @@ const Settings = observer(() => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userStore.user == null) {
+    if (userStore.user === null) {
       navigate("/auth/sign-in");
     }
   }, []);
@@ -114,11 +114,6 @@ const Settings = observer(() => {
 
   return (
     <main className="settings">
-      <Notification
-        message="Aspect ratio should be 1:1!"
-        show={show}
-        onClose={handleClose}
-      />
       <div className="tiny-wrapper">
         <p className="settings-title color-gray-900 heading-04">Account settings</p>
         <div className="between-center">

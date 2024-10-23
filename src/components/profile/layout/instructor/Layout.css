@@ -1,6 +1,11 @@
 .inst-menu{
+    min-height: 100vh;
     height: 100%;
     width: 15vw;
+}
+
+.instructor-content{
+    flex-grow: 1;
 }
 
 .instructor-wrapper{
@@ -13,12 +18,47 @@
 }
 
 .menu-header{
-    border-bottom-width: 1px;
-    border-bottom-color: #8c94a382;
+    border-bottom: solid 1px #8c94a382;
     display: flex;
     align-items: center;
 }
 
 .menu-title{
     margin-left: 5px;
+}
+
+.greeting{
+    margin-bottom: 5px;
+}
+
+.inst-pfp-icon{
+    min-height: 100%;
+    margin-left: 15px;
+}
+
+.inst-bell{
+    height: 20px;
+}
+
+.notifications-container{
+    height: 45px;
+    width: 45px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inst-pfp-link{
+    height: 100%;
+}
+
+.instructor-rights{
+    height: 45px;
+}
+
+.instructor-settings-header{
+    display: flex;
+    flex: 1;
+    padding: 25px 200px;
 }

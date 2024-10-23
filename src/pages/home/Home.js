@@ -14,7 +14,7 @@ const Home = observer(() => {
                     <p className='hero-title color-gray-900 display-02'>Learn with expert anytime anywhere</p>
                     <p className='hero-subtitle color-gray-700 body-xxxl'>Our mision is to help people to find the best course online and learn with expert anytime, anywhere.</p>
                     
-                    {userStore.user == null && <Link to='/auth/sign-up'><button className='button-primary primary large button-l'>Create Account</button></Link>}
+                    {userStore.user === null && <Link to='/auth/sign-up'><button className='button-primary primary large button-l'>Create Account</button></Link>}
                 </div>
                 <img src={background} />
             </div>

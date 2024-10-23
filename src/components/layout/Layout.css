@@ -27,17 +27,14 @@ header a{
     margin-right: 40px;
 }
 
-.main-headerLeft img{
-    width: 40px;
-}
 
 .search{
     padding: 10px 25px 10px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: #ccc 1px solid;
     margin-left: 10px;
+    height: 45px;
 }
 
 .search input{
@@ -45,6 +42,9 @@ header a{
     cursor: pointer;
     border: none;
     font-size: 16px;
+    background: none;
+    flex-grow: 1;
+    margin-left: 15px;
 }
 
 .search img{
@@ -57,11 +57,11 @@ header a{
     justify-content: space-between;
     align-items: center;
     width: 100px;
-    margin-right: 25px;
 }
 
 .main-clickables img{
     height: 17px;
+    margin-right: 15px;
 }
 
 .main-button{
@@ -80,8 +80,13 @@ header a{
     width: 35px;
     height: 35px;
     border-radius: 50%;
+    margin-left: 15px;
 }
 
 .layout-buttons{
+    gap: 20px;
+}
+
+.setting-part-inputs{
     gap: 20px;
 }
