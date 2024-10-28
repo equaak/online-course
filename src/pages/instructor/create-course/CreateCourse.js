@@ -892,7 +892,7 @@ const CreateCourse = observer(() => {
         handleUpload(response.data.courseId);
       }
       catch(e){
-
+        console.log(e);
       }
 
       
