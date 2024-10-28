@@ -129,4 +129,13 @@
     color: #1D2026;
 }
 
+.button-tertiary.gray{
+    background: none;
+    color: #6E7485;
+    border: 1px solid #E9EAF0;
+}
 
+.button-tertiary.gray:hover{
+    background-color: #F5F7FA;
+    color: #1D2026;
+}

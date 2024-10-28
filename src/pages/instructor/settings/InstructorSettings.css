@@ -2,3 +2,72 @@
     padding: 40px;
     width: 100%;
 }
+
+.inst-pfp-link{
+    height: 100%;
+}
+
+.instructor-rights{
+    height: 45px;
+}
+
+.instructor-content-wrapper{
+    padding: 25px 200px;
+    flex: 1;
+}
+
+.instructor-settings-header{
+    padding: 25px 200px;
+}
+
+.setting-block{
+    flex-grow: 1;
+    margin-right: 35px;
+}
+
+.setting-block-part{
+    margin-top: 25px;
+}
+
+.setting-block-input{
+    display: flex;
+    gap: 20px;
+}
+
+.setting-block-part{
+    display: flex;
+    flex-direction: column;
+}
+
+.setting-block-part .input{
+    flex-grow: 1;
+    margin-top: 5px;
+}
+
+textarea{
+    resize: none;
+}
+
+.settings-block{
+    margin-bottom: 25px;
+}
+
+.settings-block .button-primary{
+    margin-top: 25px;
+}
+
+.instructor-settings-header .between-center{
+    gap: 40px;
+}
+
+.last-container{
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 25px 0;
+}
+
+.settings-block .button-secondary{
+    margin-left: 50px;
+}

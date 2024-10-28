@@ -7,6 +7,7 @@ import userStore from "../../../store/UserStore";
 import Notification from "../../../components/notification/Notification";
 import PasswordInput from "../../../components/password-input/PasswordInput";
 import { useNavigate, useLocation } from "react-router-dom";
+import Photo from "../../../components/photo/Photo";
 
 const Settings = observer(() => {
   const ref = useRef(null);
@@ -30,46 +31,10 @@ const Settings = observer(() => {
     }
   }, []);
 
-  const handleClick = () => {
-    ref.current.click();
-  };
-
-  const handleInput = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = new Image();
-        img.onload = async () => {
-          if (img.width === img.height) {
-            setShow(false);
-            setFile(file);
-            const response = await fileToBase64(file);
-            setPfp(response.toString());
-          } else {
-            setShow(true);
-          }
-        };
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const fileToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        resolve(reader.result.split(",")[1]);
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  };
-
-  const handleClose = () => {
-    setShow(false);
-  };
+  const onFileInput = (file, pfp) => {
+    setPfp(pfp);
+    setFile(file);
+  }
 
   const handleInfoChange = async () => {
     let new_info = {
@@ -108,42 +73,12 @@ const Settings = observer(() => {
     navigate('/');
   }
 
-  const profilePictureUrl = useMemo(() => {
-    return file ? URL.createObjectURL(file) : null;
-  }, [file]);
-
   return (
     <main className="settings">
       <div className="tiny-wrapper">
         <p className="settings-title color-gray-900 heading-04">Account settings</p>
         <div className="between-center">
-          <div className="pfp-settings">
-            <div
-              className="pfp"
-              style={
-                profilePictureUrl
-                  ? {
-                      backgroundImage: `url(${profilePictureUrl})`,
-                      backgroundSize: "cover",
-                    }
-                  : {}
-              }
-            >
-              <input
-                onChange={handleInput}
-                ref={ref}
-                type="file"
-                accept="image/*"
-              />
-              <div onClick={handleClick} className="upload">
-                <img src={upload} />
-                <p className="upload-title color-gray-white body-m500">Upload Photo</p>
-              </div>
-            </div>
-            <p className="pfp-desc color-gray-600 body-m400">
-              Image size should be under 1MB and image ratio needs to be 1:1
-            </p>
-          </div>
+          <Photo background={'white'} onFileInput={(file, pfp) => onFileInput(file, pfp)} size={'big'} />
           <div className="info-settings">
             <div className="between-center">
               <div className="auth-part">

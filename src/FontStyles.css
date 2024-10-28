@@ -82,6 +82,33 @@
     font-size: 24px;
 }
 
+.body-xxxl400{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.body-xxxl500{
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.body-xxxl600{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+.body-xxxl700{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+.body-xxxl800{
+    font-size: 24px;
+    font-weight: 800;
+}
+
 .body-xxl400{
     font-size: 20px;
 }

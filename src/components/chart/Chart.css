@@ -1,0 +1,23 @@
+.chart-container {
+  position: relative;
+  width: 600px;
+  font-family: "SF Pro", sans-serif;
+}
+
+.chart-y-axis-label,
+.chart-x-axis-label,
+.chart-tooltip {
+  font-family: "SF Pro", sans-serif;
+}
+
+.chart-tooltip {
+  position: absolute;
+  padding: 10px 25px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.chart-y-axis-label,
+.chart-x-axis-label {
+  fill: #A1A5B3;
+}

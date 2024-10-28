@@ -2,46 +2,6 @@
     margin: 40px 0 25px 0;
 }
 
-.pfp{
-    width: 280px;
-    height: 280px;
-    background-color: #a4a4a4;
-    display: flex;
-    align-items: flex-end;
-}
-
-.upload{    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    padding: 10px 0;
-   
-    background-color: #0000009e;
-    cursor: pointer;
-}
-
-.pfp-settings{
-    padding: 45px;
-    border: 1px solid #E9EAF0;
-}
-
-.upload-title{
-    font-size: 14px;
-    font-weight: 500;
-    margin-left: 10px;
-}
-
-.pfp input{
-    display: none;
-}
-
-.pfp-desc{
-    margin-top: 20px;
-    width: 280px;
-    text-align: center;
-}
-
 .info-settings{
     width: 700px;
 }

@@ -15,6 +15,8 @@ import Dashboard from './pages/profile/dashboard/Dashboard';
 import Cookies from 'js-cookie';
 import InstructorLayout from './components/profile/layout/instructor/Layout';
 import InstructorSettings from './pages/instructor/settings/InstructorSettings';
+import InstructorDashboard from './pages/instructor/dashboard/InstructorDashboard';
+import CreateCourse from './pages/instructor/create-course/CreateCourse';
 
 function App() {
 
@@ -43,6 +45,9 @@ function App() {
       </Route>
       <Route path='/instructor' element={<InstructorLayout />}>
         <Route path='settings' element={<InstructorSettings/>}/>
+        <Route path='dashboard' element={<InstructorDashboard />} />
+        <Route path='new-course' element={<CreateCourse /> } />
+        <Route path='*' element={<div>oshibka instructor</div>} />
       </Route>
       <Route path='/auth/:option' element={<Auth />}/>
     </Routes>

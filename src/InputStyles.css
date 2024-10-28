@@ -1,8 +1,9 @@
 .input{
     color: #1D2026;
-    padding: 10px 20px;
+    padding: 15px 20px;
     flex-grow: 1;
     border: 1px solid #E9EAF0;
+    font-size: 16px;
 }
 
 .input::placeholder{

@@ -1,17 +1,20 @@
+.instructor-wrapper{
+    display: flex;
+}
+
 .inst-menu{
     min-height: 100vh;
-    height: 100%;
     width: 15vw;
+    display: flex;
+    flex-direction: column;
 }
 
 .instructor-content{
-    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
-.instructor-wrapper{
-    display: flex;
-    align-items: flex-start;
-}
 
 .inst-menu-wrapper{
     padding: 20px 30px;
@@ -32,7 +35,9 @@
 }
 
 .inst-pfp-icon{
-    min-height: 100%;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
     margin-left: 15px;
 }
 
@@ -49,16 +54,30 @@
     align-items: center;
 }
 
-.inst-pfp-link{
-    height: 100%;
+.side-bar-wrapper{  
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.side-bar-wrapper img{
+    width: 25px;
+}
+
+.side-bar-wrapper .body-m500{
+    margin-left: 15px;
+}
+
+.sign-out{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
 }
 
 .instructor-rights{
-    height: 45px;
-}
-
-.instructor-settings-header{
     display: flex;
-    flex: 1;
-    padding: 25px 200px;
+    justify-content: space-between;
+    align-items: center;
 }

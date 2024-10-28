@@ -1,0 +1,59 @@
+.pfp{
+    width: 280px;
+    height: 280px;
+    background-color: #a4a4a4;
+    display: flex;
+    align-items: flex-end;
+}
+
+.pfp.small{
+    width: 200px;
+    height: 200px;
+}
+
+.upload{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 10px 0;
+   
+    background-color: #0000009e;
+    cursor: pointer;
+}
+
+.upload-icon{
+    width: 24px;
+}
+
+.pfp-settings{
+    padding: 45px;
+    border: 1px solid #E9EAF0;
+}
+
+.pfp-settings.background-color-gray-50{
+    border: none;
+}
+
+.pfp-settings.small{
+    padding: 30px;
+}
+
+.upload-title{
+    margin-left: 10px;
+}
+
+.pfp input{
+    display: none;
+}
+
+.pfp-desc{
+    margin-top: 20px;
+    width: 280px;
+    text-align: center;
+}
+
+.pfp-desc.small{
+    width: 200px;
+    text-align: center;
+}
