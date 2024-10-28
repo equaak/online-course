@@ -17,6 +17,8 @@ import InstructorLayout from './components/profile/layout/instructor/Layout';
 import InstructorSettings from './pages/instructor/settings/InstructorSettings';
 import InstructorDashboard from './pages/instructor/dashboard/InstructorDashboard';
 import CreateCourse from './pages/instructor/create-course/CreateCourse';
+import Courses from './pages/courses/Courses';
+import Course from './pages/course/Course';
 
 function App() {
 
@@ -31,6 +33,8 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path='courses' element={<Courses />} />
+        <Route path='course/:id' element={<Course />} />
         <Route path='profile' element={<PrivateRoute element={<ProfileLayout />} />}>
           <Route path='settings' element={<Settings />} />
           <Route path='dashboard' element={<Dashboard />} />

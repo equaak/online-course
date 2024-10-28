@@ -1,0 +1,25 @@
+.courses-block{
+  padding: 100px 0;
+}
+
+.courses.between-center{
+  flex-wrap: wrap;
+  row-gap: 50px;
+}
+
+.course-item-container img{
+  width: 500px;
+}
+
+.course-item-container{
+  border: 1px solid #E9EAF0;
+
+}
+
+.course-title{
+  margin-top: 15px;
+}
+
+.course-item-info-container{
+  padding: 20px;
+}

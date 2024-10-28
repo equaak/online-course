@@ -596,6 +596,8 @@ const Lecture = ({ info, onChange, index }) => {
     URL.revokeObjectURL(videoRef.current.src);
   };
 
+
+
   return (
     <div className="lecture-container background-color-gray-white between-center">
       <Modal
@@ -886,16 +888,21 @@ const CreateCourse = observer(() => {
       }
     }
     else if(stage === 3){
-      
+
       try{
         const response = await axios.post('http://localhost:5000/course/create-course', {title: title, subtitle: subTitle, categoryName: category, topic: topic, instructorId: userStore.user.userId, thumbnail: thumbnailBase});
         handleUpload(response.data.courseId);
+        for(let i = 0; i < sections.length; i++){
+          for(let j = 0; j < sections[i].lectures.length; j++){
+            handleUploadLecture(sections[i].lectures[j]);
+          }
+        }
       }
       catch(e){
         console.log(e);
       }
 
-      
+
     }
   };
 
@@ -912,6 +919,24 @@ const CreateCourse = observer(() => {
       alert('File uploaded successfully');
     } catch (error) {
       console.error('Error uploading file:', error);
+    }
+  };
+
+  const handleUploadLecture = async (lecture) => {
+    const formData = new FormData();
+    formData.append('video', lecture.video);
+    formData.append('attach', lecture.lectureFile);
+    formData.append('lectureName', lecture.lectureName);
+    formData.append('description', lecture.description);
+    formData.append('lectureNotes', lecture.lectureNotes);
+
+    try {
+      await axios.post('http://localhost:5000/lecture/addLecture', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      alert('Lecture uploaded successfully');
+    } catch (error) {
+      console.error('Error uploading lecture:', error);
     }
   };
 
