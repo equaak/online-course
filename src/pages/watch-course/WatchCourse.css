@@ -1,0 +1,54 @@
+.watch-course-header-info{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.watch-course-header{
+    padding: 20px 0;
+}
+
+.watch-course-header-buttons{
+    gap: 20px;
+}
+
+.watch-course-info{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.back-arrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.back-arrow img{
+    width: 20px;
+}
+
+.watch-course-video{
+    width: 60%;
+}
+
+.watch-course-main video{
+    width: 100%;
+}
+
+.watch-course-cirruculum{
+    width: 30%;
+}
+
+.watch-course-main {
+    margin-top: 35px;
+}
+
+.watch-course-video-header{
+    padding: 25px 0;
+    border-bottom: solid 2px #E9EAF0;
+}

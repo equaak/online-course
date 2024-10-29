@@ -1,0 +1,29 @@
+.course-icon-info{
+    padding: 15px 20px;
+}
+
+.course-icon-info .body-l500{
+    margin-top: 10px;
+}
+
+.course-icon-ratings{
+    padding: 15px 20px;
+    border-top: solid 1px #E9EAF0;
+}
+
+.course-icon-container{
+    border: 1px solid #E9EAF0;
+    width: min-content;
+}
+
+.course-category-container{
+    padding: 5px 10px;
+}
+
+.course-icon-rating-container{
+    gap: 5px;
+}
+
+.course-students-container {
+    gap: 10px;
+}

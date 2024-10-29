@@ -19,6 +19,7 @@ import InstructorDashboard from './pages/instructor/dashboard/InstructorDashboar
 import CreateCourse from './pages/instructor/create-course/CreateCourse';
 import Courses from './pages/courses/Courses';
 import Course from './pages/course/Course';
+import WatchCourse from './pages/watch-course/WatchCourse';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path='courses' element={<Courses />} />
         <Route path='course/:id' element={<Course />} />
+        <Route path='watch-course/:id' element={<WatchCourse />} />
         <Route path='profile' element={<PrivateRoute element={<ProfileLayout />} />}>
           <Route path='settings' element={<Settings />} />
           <Route path='dashboard' element={<Dashboard />} />

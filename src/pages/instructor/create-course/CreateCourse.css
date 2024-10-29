@@ -344,3 +344,17 @@ input[type="file"]{
   justify-content: space-between;
   gap: 25px;
 }
+
+.messages {
+  gap: 40px;
+}
+
+.message-container{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.message-container .body-m400{
+  margin: 20px 0 10px 0;
+}

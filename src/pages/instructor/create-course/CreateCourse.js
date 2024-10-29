@@ -183,9 +183,12 @@ const Thumbnail = ({ onFileInput }) => {
 
 const Video = ({ onFileInput }) => {
   const ref = useRef(null);
+  const videoRef = useRef(null);
   const [file, setFile] = useState(null);
   const [video, setVideo] = useState(null);
   const [show, setShow] = useState(false);
+  const [resolution, setResolution] = useState(null);
+  const [message, setMessage] = useState(null);
 
   const handleClick = () => {
     ref.current.click();
@@ -194,24 +197,37 @@ const Video = ({ onFileInput }) => {
   const handleInput = async (event) => {
     const file = event.target.files[0];
     if (file && file.type.startsWith("video/")) {
-      setVideo(file);
-      onFileInput(file);
-      console.log(file);
-      // const formData = new FormData();
-      // formData.append('video', file);
-
-      // try {
-      //   const response = await axios.post("http://localhost:3000/upload", formData, {
-      //       headers: {
-      //           "Content-Type": "multipart/form-data",
-      //       },
-      //   });
-      //   console.log("File uploaded successfully:", response.data);
-      // } catch (error) {
-      //     console.error("Error uploading file:", error);
-      // }
+      const videoURL = URL.createObjectURL(file);
+      videoRef.current.src = videoURL;
+      if (resolution) {
+        setVideo(file);
+        onFileInput(file);
+      } else {
+        setMessage('Upload video with resolution of 3/2!');
+        setShow(true);
+      }
     } else {
+      setMessage('Upload video file for trailer!')
       setShow(true);
+    }
+  };
+
+  const checkResolution = () => {
+    console.log("aksjdfkldas");
+    const video = videoRef.current;
+
+    if (video) {
+      const videoWidth = video.videoWidth;
+      const videoHeight = video.videoHeight;
+
+      console.log(videoWidth, videoHeight);
+      if (videoWidth / videoHeight - 12 / 8 < 1) {
+        URL.revokeObjectURL(video.src);
+        setResolution(true);
+      } else {
+        URL.revokeObjectURL(video.src);
+        setResolution(false);
+      }
     }
   };
 
@@ -222,8 +238,13 @@ const Video = ({ onFileInput }) => {
   return (
     <>
       <input onChange={handleInput} ref={ref} type="file" accept="video/*" />
+      <video
+        ref={videoRef}
+        onLoadedMetadata={checkResolution}
+        style={{ display: "none" }}
+      />
       <Notification
-        message={"Upload video file for trailer!"}
+        message={message}
         show={show}
         onClose={handleClose}
       />
@@ -596,8 +617,6 @@ const Lecture = ({ info, onChange, index }) => {
     URL.revokeObjectURL(videoRef.current.src);
   };
 
-
-
   return (
     <div className="lecture-container background-color-gray-white between-center">
       <Modal
@@ -799,7 +818,7 @@ const CreateCourse = observer(() => {
   const [stage, setStage] = useState(0);
   const [categories, setCategories] = useState([]);
   const [languages, setLanguages] = useState(["English", "Russian"]);
-  const [hovered, setHovered] = useState(null);
+  const [price, setPrice] = useState(null);
 
   const thumbnailPictureUrl = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
@@ -850,9 +869,7 @@ const CreateCourse = observer(() => {
         category === "" ||
         topic === "" ||
         language === "" ||
-        duration === 0 ||
-        durationType === "" ||
-        duration === ""
+        price === ""
       ) {
         setShow(true);
       } else {
@@ -870,73 +887,98 @@ const CreateCourse = observer(() => {
       }
     } else if (stage === 2) {
       console.log(sections);
-      if(sections.length > 0){
-        for(let i = 0; i < sections.length; i++) {
-          if(sections[i].sectionName === '' || !sections[i].sectionName){
+      if (sections.length > 0) {
+        for (let i = 0; i < sections.length; i++) {
+          if (sections[i].sectionName === "" || !sections[i].sectionName) {
             setShow(true);
           }
-          for(let j = 0; j < sections[i]?.lectures.length; i++){
-            if(sections[i].lectures[j].lectureName === '' || !sections[i].lectures[j].lectureName){
+          for (let j = 0; j < sections[i]?.lectures.length; i++) {
+            if (
+              sections[i].lectures[j].lectureName === "" ||
+              !sections[i].lectures[j].lectureName
+            ) {
               setShow(true);
             }
           }
         }
         setStage((prev) => prev + 1);
-      }
-      else{
+      } else {
         setShow(true);
       }
-    }
-    else if(stage === 3){
+    } else if (stage === 3) {
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/course/create-course",
+          {
+            title: title,
+            subtitle: subTitle,
+            categoryName: category,
+            topic: topic,
+            instructorId: userStore.user.userId,
+            thumbnail: thumbnailBase,
+            price: price,
+            description: description
+          }
+        );
 
-      try{
-        const response = await axios.post('http://localhost:5000/course/create-course', {title: title, subtitle: subTitle, categoryName: category, topic: topic, instructorId: userStore.user.userId, thumbnail: thumbnailBase});
         handleUpload(response.data.courseId);
-        for(let i = 0; i < sections.length; i++){
-          for(let j = 0; j < sections[i].lectures.length; j++){
-            handleUploadLecture(sections[i].lectures[j]);
+        for (let i = 0; i < sections.length; i++) {
+          await axios.post('http://localhost:5000/section/add-section', {sectionName: sections[i].sectionName, sectionOrder: i + 1, courseId: response.data.courseId});
+          for (let j = 0; j < sections[i].lectures.length; j++) {
+            console.log(sections[i].lectures[j]);
+            handleUploadLecture(
+              sections[i].lectures[j],
+              response.data.courseId,
+              i + 1,
+              j + 1
+            );
           }
         }
-      }
-      catch(e){
+      } catch (e) {
         console.log(e);
       }
-
-
     }
   };
 
   const handleUpload = async (courseId) => {
     const formData = new FormData();
-    formData.append('file', trailer);
-    formData.append('filename', trailer.name);
-    formData.append('courseId', courseId);
+    formData.append("file", trailer);
+    formData.append("filename", trailer.name);
+    formData.append("courseId", courseId);
 
     try {
-      await axios.post('http://localhost:5000/trailer/upload', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+      await axios.post("http://localhost:5000/trailer/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      alert('File uploaded successfully');
+      alert("File uploaded successfully");
     } catch (error) {
-      console.error('Error uploading file:', error);
+      console.error("Error uploading file:", error);
     }
   };
 
-  const handleUploadLecture = async (lecture) => {
+  const handleUploadLecture = async (lecture, courseId, sectionId, lectureOrder) => {
     const formData = new FormData();
-    formData.append('video', lecture.video);
-    formData.append('attach', lecture.lectureFile);
-    formData.append('lectureName', lecture.lectureName);
-    formData.append('description', lecture.description);
-    formData.append('lectureNotes', lecture.lectureNotes);
+    formData.append("files", lecture.video);
+    formData.append("files", lecture.lectureFile);
+    formData.append("lectureName", lecture.lectureName);
+    formData.append("description", lecture.description);
+    formData.append("lectureNotes", lecture.lectureNotes);
+    formData.append("courseId", courseId);
+    formData.append("sectionId", sectionId);
+    formData.append('lectureOrder', lectureOrder)
 
     try {
-      await axios.post('http://localhost:5000/lecture/addLecture', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      alert('Lecture uploaded successfully');
+      await axios.post(
+        "http://localhost:5000/lecture/create-lecture",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+      alert("Lecture uploaded successfully");
     } catch (error) {
-      console.error('Error uploading lecture:', error);
+      console.error("Error uploading lecture:", error);
+      alert("Error uploading lecture");
     }
   };
 
@@ -1099,23 +1141,15 @@ const CreateCourse = observer(() => {
 
                 <div className="basic-info-part">
                   <p className="body-m400 color-gray-900 input-title">
-                    Course Duration
+                    Course Price in $
                   </p>
-                  <div className="duration-input-container">
-                    <div className="between-center">
-                      <input
-                        className="duration-input body-l400"
-                        type="number"
-                        placeholder="Duration..."
-                        value={duration}
-                        onChange={(e) => setDuration(e.target.value)}
-                      />
-                      <DurationDropDown
-                        onSelect={handleDurationTypeSelection}
-                        option={durationType}
-                      />
-                    </div>
-                  </div>
+                  <input
+                    className="input body-l400"
+                    type="number"
+                    placeholder="Course Price..."
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
                 </div>
               </div>
             </div>
@@ -1253,6 +1287,44 @@ const CreateCourse = observer(() => {
         ) : (
           ""
         )}
+
+        {stage === 3 ? (
+          <>
+            <div className="basic-info-header between-center">
+              <p className="heading-04">Publish Course</p>
+
+              <div className="basic-info-header-buttons">
+                <button className="button-secondary medium primary button-m">
+                  Save
+                </button>
+                <button className="button-tertiary medium primary button-m">
+                  Save and Preview
+                </button>
+              </div>
+            </div>
+            <div className="advanced-info-main">
+              <div className="basic-info-part">
+                <p className="body-xl500 color-gray-900 input-title">Message</p>
+
+                <div className="messages between-center">
+                  <div className="message-container">
+                    <p className="body-m400 color-gray-900">Welcome Message</p>
+                    <textarea rows={4} type="text" className="input" />
+                  </div>
+
+                  <div className="message-container">
+                    <p className="body-m400 color-gray-900">
+                      Congratulations Message
+                    </p>
+                    <textarea rows={4} type="text" className="input" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          ""
+        )}
         <div className="basic-main-buttons between-center">
           <button
             onClick={handlePrev}
@@ -1264,7 +1336,7 @@ const CreateCourse = observer(() => {
             onClick={handleNext}
             className="button-primary large primary button-l"
           >
-            Save & Next
+            {stage === 3 ? "Publish Course" : "Save & Next"}
           </button>
         </div>
       </div>

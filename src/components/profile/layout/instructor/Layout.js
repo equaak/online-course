@@ -30,7 +30,6 @@ const InstructorLayout = observer(() => {
 
   useEffect(() => {
     getPartOfDay();
-    console.log(location.pathname.split('/'));
   }, []);
 
   const getPartOfDay = () => {

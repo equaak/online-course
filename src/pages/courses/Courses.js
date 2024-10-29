@@ -4,6 +4,8 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import './Courses.css';
 import axios from 'axios';
 
+import CourseIcon from '../../components/courseIcon/CourseIcon';
+
 const Courses = observer(() => {
   const [courses, setCourses] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -14,7 +16,7 @@ const Courses = observer(() => {
   }, [])
 
   const getCourses = async () => {
-    const response = await axios.get('http://localhost:5000/course/getAllCourses');
+    const response = await axios.get('http://localhost:5000/course/get-courses');
     console.log(response.data);
     setCourses(response.data);
   }
@@ -25,13 +27,6 @@ const Courses = observer(() => {
     setCategories(newArray);
   }
 
-  const courseThumbnail = (thumbnail) => {
-    if (!thumbnail.includes("data:image/png;base64,")){
-      thumbnail = `data:image/png;base64,${thumbnail}`;
-    }
-    return thumbnail
-  }
-
   return(
     <main className='mid-wrapper courses-block'>
       <div className='courses between-center'>
@@ -39,13 +34,7 @@ const Courses = observer(() => {
           console.log(course)
           return(
             <Link to={`/course/${course.courseId}`}>
-              <div className='course-item-container'>
-                <img src={courseThumbnail(course.thumbnail)} />
-                <div className='course-item-info-container'>
-                  <p className='body-m500 color-error-700'>Course category: {categories[course.categoryId - 1]}</p>
-                  <p className='body-l500 colog-gray-900 course-title'>{course.title}</p>
-                </div>
-              </div>
+              <CourseIcon course={course}/>
             </Link>
           )
         })}

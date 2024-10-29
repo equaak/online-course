@@ -1,0 +1,32 @@
+.section-icon-header{
+    padding: 20px;
+}
+
+.inverted{
+    transform: rotate(180deg);
+}
+
+.section-icon-title{
+    gap: 10px;
+}
+
+.section-icon-title img{
+    width: 12px;
+}
+
+.section-icon-header-lectures{
+    gap: 5px;
+}
+
+.section-icon-main{
+    padding: 20px;
+    border: 1px solid #E9EAF0;
+}
+
+.section-icon-lecture{
+    padding: 10px 0;
+}
+
+.section-icon-lecture{
+    cursor: pointer;
+}
